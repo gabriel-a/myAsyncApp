@@ -4,9 +4,9 @@ using RestSharp;
 
 namespace myAsyncApp
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             GreetAsync().ConfigureAwait(false);
             Console.WriteLine("Im some code in between!");
@@ -22,7 +22,7 @@ namespace myAsyncApp
             Console.WriteLine("Something after GetGreetingsAsync2!");
             Console.WriteLine("Async Application Started!");
             //Call Async method
-            Task<string> greetMsg = GetGreetingsAsync();
+            var greetMsg = GetGreetingsAsync();
 
             //Do your other stuffs synchronously while async method is in progress            
             Console.WriteLine("Async Method in started....");
@@ -41,7 +41,8 @@ namespace myAsyncApp
             Console.WriteLine("Async Application Ended!");
             Console.Read();
         }
-        public async static Task<string> GetGreetingsAsync()
+        
+        private static async Task<string> GetGreetingsAsync()
         {
             //simulate long running process
             await Task.Delay(10000);
